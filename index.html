@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#282b30">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" href="icon-192.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json?v=4">
+<link rel="icon" type="image/png" href="icon-192.png?v=4">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=4">
 <title>NotFat</title>
 <style>
 :root{color-scheme:dark;--bg:#282b30;--card:#181b22;--card2:#20242d;--text:#f2f4f8;--mute:#8b93a3;--accent:#a9e62a;--accent-ink:#1b2a05;--danger:#f87171;--line:#2a2f3a}
@@ -42,6 +42,7 @@ nav button.on{color:var(--accent);font-weight:700}
 label{display:block;margin:10px 0 4px;color:var(--mute);font-size:14px}
 input.f,textarea.f{width:100%;background:var(--card2);color:var(--text);border:0;border-radius:10px;padding:10px;font:inherit}
 .tabs{display:flex;gap:6px;margin-bottom:12px}.tabs button{flex:1}.tabs .on{background:var(--accent);color:var(--accent-ink);font-weight:700}
+.sm{width:70px;text-align:center}
 </style>
 </head>
 <body>
@@ -102,37 +103,58 @@ const WORKOUTS = {
 };
 const EN = {"לחיצת חזה במוט": "barbell bench press", "לחיצת חזה בשיפוע עם דמבלים": "incline dumbbell press", "לחיצת חזה עם דמבלים": "dumbbell bench press", "לחיצת חזה בשיפוע במוט": "incline barbell bench press", "לחיצת חזה במכונת סמית'": "smith machine bench press", "מכונת לחיצת חזה": "chest press machine", "מכונת לחיצת חזה בשיפוע": "incline chest press machine", "פרפר (פלייס) במכונה": "pec deck machine fly", "פרפר עם דמבלים": "dumbbell chest fly", "קרוסאובר כבלים מלמעלה": "high cable crossover", "קרוסאובר כבלים מלמטה": "low to high cable crossover", "לחיצת חזה בכבלים": "cable chest press", "מקבילים (דיפס) לחזה": "chest dips", "פולאובר עם דמבל על ספסל": "dumbbell pullover", "שכיבות סמיכה": "push up", "כפיפת מרפק עם מוט": "barbell curl", "כפיפת מרפק עם מוט W": "EZ bar curl", "כפיפת מרפק עם דמבלים בישיבה": "seated dumbbell curl", "כפיפה בשיפוע עם דמבלים": "incline dumbbell curl", "כפיפת פטישים": "hammer curl", "כפיפת מרפק בכבל": "cable bicep curl", "כפיפה בכבל עם חבל (פטישים)": "cable rope hammer curl", "כפיפה על ספסל סקוט": "preacher curl", "כפיפת ריכוז": "concentration curl", "מכונת ביספס": "bicep curl machine", "מתח": "pull up", "מתח באחיזה צרה (סופינציה)": "chin up", "פולי עליון (פולדאון)": "lat pulldown", "פולי עליון באחיזה צרה": "close grip lat pulldown", "חתירה במוט": "barbell bent over row", "חתירה בכבל בישיבה": "seated cable row", "חתירה בדמבל ביד אחת": "one arm dumbbell row", "חתירה במכונה": "machine row", "חתירה במכונה בתמיכת חזה": "chest supported row machine", "חתירה בסמית'": "smith machine row", "חתירה בשיפוע עם דמבלים (חזה על ספסל)": "chest supported dumbbell row", "חתירת T-bar": "t bar row", "פולאובר בכבל": "straight arm pulldown", "מכונת משיכה עליונה": "lat pulldown machine", "הרמת מתים": "deadlift", "היפראקסטנשן": "back extension hyperextension", "פשיטת מרפק בכבל (פולי)": "triceps pushdown", "פשיטה בכבל עם חבל": "rope triceps pushdown", "פרנצ'ים (פשיטה מעל הראש) עם מוט": "skull crusher barbell", "פשיטה מעל הראש בכבל": "overhead cable triceps extension", "פשיטה מעל הראש עם דמבל": "overhead dumbbell triceps extension", "מקבילים לשלישיה": "triceps dips", "לחיצה צרה במוט": "close grip bench press", "בעיטה אחורית בדמבל": "dumbbell triceps kickback", "מכונת טריספס": "triceps extension machine", "סקוואט": "barbell back squat", "סקוואט בסמית'": "smith machine squat", "סקוואט קדמי": "front squat", "האק סקוואט": "hack squat", "לחיצת רגליים במכונה": "leg press", "מכונת פשיטת ברכיים": "leg extension machine", "כפיפת ברכיים בשכיבה": "lying leg curl", "כפיפת ברכיים בישיבה": "seated leg curl", "דדליפט רומני": "romanian deadlift", "דדליפט רומני עם דמבלים": "dumbbell romanian deadlift", "לאנג'ים עם דמבלים": "dumbbell lunges", "סקוואט בולגרי": "bulgarian split squat", "הליכת לאנג'ים": "walking lunges", "היפ תראסט": "barbell hip thrust", "בעיטת ישבן בכבל": "cable glute kickback", "מכונת אבדוקשן (חיצוני ירכיים)": "hip abduction machine", "מכונת אדוקשן (פנימי ירכיים)": "hip adduction machine", "הרמות תאומים בעמידה": "standing calf raise", "הרמות תאומים בישיבה": "seated calf raise", "לחיצת כתפיים עם דמבלים": "dumbbell shoulder press", "לחיצת כתפיים עם מוט": "barbell overhead press", "לחיצת כתפיים במכונה": "shoulder press machine", "לחיצת ארנולד": "arnold press", "הרמות צד עם דמבלים": "dumbbell lateral raise", "הרמות צד בכבל": "cable lateral raise", "הרמות צד במכונה": "lateral raise machine", "הרמות קדמיות": "dumbbell front raise", "הרמות קדמיות בכבל": "cable front raise", "פרפר הפוך במכונה": "reverse pec deck rear delt fly", "הרמות אחוריות עם דמבלים": "dumbbell rear delt fly", "פייס פול (משיכה לפנים בכבל)": "face pull", "משיכה לסנטר": "upright row", "שרוגס עם דמבלים": "dumbbell shrug", "שרוגס עם מוט": "barbell shrug"};
 const videoUrl = n => "https://www.youtube.com/results?search_query="+encodeURIComponent((EN[n]||n)+" exercise form");
-const ORDER = ["A","B","C"];
-const DEFAULTS = { // תרגילים שמוצעים כברירת מחדל בתחילת כל אימון
-  A:["לחיצת חזה במוט","לחיצת חזה בשיפוע עם דמבלים","פרפר (פלייס) במכונה","כפיפת מרפק עם מוט","כפיפת פטישים","כפיפת מרפק בכבל"],
-  B:["מתח","חתירה במוט","פולי עליון (פולדאון)","פשיטת מרפק בכבל (פולי)","פרנצ'ים (פשיטה מעל הראש) עם מוט","בעיטה אחורית בדמבל"],
-  C:["סקוואט","לחיצת רגליים במכונה","כפיפת ברכיים בשכיבה","לחיצת כתפיים עם דמבלים","הרמות צד עם דמבלים","פרפר הפוך במכונה"]};
+const CAT = [].concat(WORKOUTS.A.ex, WORKOUTS.B.ex, WORKOUTS.C.ex);   // ספריית התרגילים המוצעים
+const catBy = Object.fromEntries(CAT.map(r=>[r[0],r]));
+const toEx = r => ({ name:r[0], muscle:r[1], sets:r[2], reps:r[3], equip:r[4] });
+const TEMPLATES = [
+  { title:"A / B / C", desc:"חזה + יד קדמית · גב + יד אחורית · רגליים + כתפיים", days:[
+    {id:"A",name:"חזה + יד קדמית",ex:["לחיצת חזה במוט","לחיצת חזה בשיפוע עם דמבלים","פרפר (פלייס) במכונה","כפיפת מרפק עם מוט","כפיפת פטישים","כפיפת מרפק בכבל"]},
+    {id:"B",name:"גב + יד אחורית",ex:["מתח","חתירה במוט","פולי עליון (פולדאון)","פשיטת מרפק בכבל (פולי)","פרנצ'ים (פשיטה מעל הראש) עם מוט","בעיטה אחורית בדמבל"]},
+    {id:"C",name:"רגליים + כתפיים",ex:["סקוואט","לחיצת רגליים במכונה","כפיפת ברכיים בשכיבה","לחיצת כתפיים עם דמבלים","הרמות צד עם דמבלים","פרפר הפוך במכונה"]}]},
+  { title:"פלג עליון / פלג תחתון", desc:"שני אימונים לסירוגין", days:[
+    {name:"פלג גוף עליון",ex:["לחיצת חזה במוט","חתירה במוט","לחיצת כתפיים עם דמבלים","פולי עליון (פולדאון)","כפיפת מרפק עם מוט","פשיטת מרפק בכבל (פולי)"]},
+    {name:"פלג גוף תחתון",ex:["סקוואט","לחיצת רגליים במכונה","דדליפט רומני","כפיפת ברכיים בשכיבה","מכונת פשיטת ברכיים","הרמות תאומים בעמידה"]}]},
+  { title:"גוף מלא", desc:"אימון אחד שמכסה את כל הגוף", days:[
+    {name:"גוף מלא",ex:["סקוואט","לחיצת חזה במוט","חתירה במוט","לחיצת כתפיים עם דמבלים","כפיפת מרפק עם דמבלים בישיבה","פשיטת מרפק בכבל (פולי)"]}]},
+  { title:"אני בונה לבד", desc:"מתחילים מאפס ומוסיפים אימונים ותרגילים בעצמי", days:[{name:"אימון 1",ex:[]}]}
+];
+function buildProgram(t){ return t.days.map((d,i)=>({ id:d.id||("d"+Date.now()+i), name:d.name, ex:d.ex.map(n=>toEx(catBy[n])) })); }
 const KEY = "gym.v1";
 
 /* ---------- מצב ושמירה ---------- */
-const blank = () => ({ next:"A", history:[], draft:null, settings:{ rest:90, remindDays:3 }, lastNotif:0 });
-function load(){ try { return Object.assign(blank(), JSON.parse(localStorage.getItem(KEY)||"{}")); } catch { return blank(); } }
+const blank = () => ({ program:null, next:null, history:[], draft:null, settings:{ rest:90, remindDays:3 }, lastNotif:0 });
+function load(){
+  let d={}; try{ d=JSON.parse(localStorage.getItem(KEY)||"{}"); }catch{}
+  const s=Object.assign(blank(),d);
+  if(!s.program && (s.history.length||s.draft)){ s.program=buildProgram(TEMPLATES[0]); s.next=["A","B","C"].includes(s.next)?s.next:"A"; } // מעבר מגרסה ישנה
+  if(s.program && !s.program.some(x=>x.id===s.next)) s.next=s.program[0]?.id??null;
+  return s;
+}
 let S = load();
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
-let view = "home";            // home | workout | history | settings
-let timer = null;             // {end}
+let view = "home";            // home | workout | program | history | settings
+let timer = null;
 
 /* ---------- עזרים ---------- */
 const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const esc = s => String(s??"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmtDate = t => new Date(t).toLocaleDateString("he-IL",{weekday:"long",day:"numeric",month:"long"});
 const daysSince = t => Math.floor((Date.now()-t)/864e5);
-const nextOf = k => ORDER[(ORDER.indexOf(k)+1)%3];
-function lastOf(name){ // הביצוע האחרון של תרגיל
+const dayIdx = id => S.program.findIndex(d=>d.id===id);
+const dayById = id => S.program?.find(d=>d.id===id);
+const labelOf = i => String.fromCharCode(65+(i%26));
+const nextOf = id => { const i=dayIdx(id); return S.program[(i<0?0:(i+1)%S.program.length)].id; };
+function lastOf(name){
   for (const h of S.history) { const e = h.exercises.find(x=>x.name===name); if (e) { const sets = e.sets.filter(s=>s.done); if (sets.length) return sets; } }
   return null;
 }
 const lastText = sets => sets ? "בפעם הקודמת: " + sets.map(s=>`${s.weight||"-"}×${s.reps||"-"}`).join(" · ") : "אין נתון קודם";
 const newSets = (n, prev) => Array.from({length:n},(_,i)=>({weight:prev?.[i]?.weight??prev?.[prev.length-1]?.weight??"",reps:"",done:false}));
-function makeExercise(w, row){ const prev = lastOf(row[0]); return { name:row[0], muscle:row[1], target:row[3], equip:row[4], sets:newSets(row[2],prev) }; }
-function startWorkout(k){
-  const list = DEFAULTS[k].map(n=>makeExercise(k,WORKOUTS[k].ex.find(r=>r[0]===n)));
-  S.draft = { key:k, started:Date.now(), exercises:list }; save(); view="workout"; render();
+function makeExercise(e){ const prev=lastOf(e.name); return { name:e.name, muscle:e.muscle||"", target:e.reps||"-", equip:e.equip||"", sets:newSets(Math.max(1,+e.sets||3),prev) }; }
+function startWorkout(id){
+  const day=dayById(id); if(!day) return;
+  S.draft = { dayId:id, key:labelOf(dayIdx(id)), name:day.name, started:Date.now(), exercises:day.ex.map(makeExercise) };
+  save(); view="workout"; render();
 }
 
 /* ---------- טיימר מנוחה ---------- */
@@ -153,34 +175,46 @@ setInterval(()=>{ if(timer) renderTimer(); },500);
 
 /* ---------- תצוגות ---------- */
 function render(){
-  const d = S.draft;
-  if (view==="workout" && !d) view="home";
-  $("nav").innerHTML = [["home","🏠","בית"],["workout","🏋️","אימון"],["history","📅","היסטוריה"],["settings","⚙️","הגדרות"]]
+  if (!S.program) { $("nav").innerHTML=""; $("timer").innerHTML=""; $("app").innerHTML=vOnboard(); return; }
+  if (view==="workout" && !S.draft) view="home";
+  $("nav").innerHTML = [["home","🏠","בית"],["workout","🏋️","אימון"],["program","📋","תוכנית"],["history","📅","היסטוריה"],["settings","⚙️","הגדרות"]]
     .map(([k,i,t])=>`<button class="${view===k?"on":""}" onclick="go('${k}')">${i}<br>${t}</button>`).join("");
-  $("app").innerHTML = ({home:vHome,workout:vWorkout,history:vHistory,settings:vSettings})[view]();
+  $("app").innerHTML = ({home:vHome,workout:vWorkout,program:vProgram,history:vHistory,settings:vSettings})[view]();
   renderTimer();
 }
-function go(v){ if(v==="workout" && !S.draft){ startWorkout(S.next); return; } view=v; render(); window.scrollTo(0,0); }
+function go(v){ if(v==="workout" && !S.draft){ if(!S.next) return go("program"); startWorkout(S.next); return; } view=v; render(); window.scrollTo(0,0); }
+
+function vOnboard(){
+  return `<div style="text-align:center"><img src="logo.png" alt="NotFat" style="width:160px;height:160px;border-radius:28px"></div>
+  <h1 style="text-align:center">ברוכים הבאים</h1>
+  <div class="mute" style="text-align:center;margin-bottom:14px">איך נראית תוכנית האימונים שלך? בחר נקודת התחלה. אפשר לשנות הכול אחר כך.</div>`+
+  TEMPLATES.map((t,i)=>`<button class="card opt" onclick="pickTemplate(${i})"><b>${esc(t.title)}</b><div class="mute">${esc(t.desc)}</div></button>`).join("");
+}
+function pickTemplate(i){
+  S.program=buildProgram(TEMPLATES[i]); S.next=S.program[0].id; save();
+  view = TEMPLATES[i].days[0].ex.length ? "home" : "program"; render(); window.scrollTo(0,0);
+}
 
 function vHome(){
-  const w = WORKOUTS[S.next], last = S.history[0];
+  const day = dayById(S.next), last = S.history[0];
+  if(!day) return `<h1>NotFat</h1><div class="card">אין אימונים בתוכנית. <button class="primary" onclick="go('program')">בנה תוכנית</button></div>`;
   const gap = last ? daysSince(last.finished) : null;
   const alert = gap!==null && gap>=S.settings.remindDays ? `<div class="alert">⏰ עברו ${gap} ימים מאז האימון האחרון. הגיע הזמן להתאמן!</div>` : "";
+  const lab = labelOf(dayIdx(day.id));
   return `<div style="text-align:center"><img src="logo.png" alt="NotFat" style="width:180px;height:180px;border-radius:28px"></div>${alert}
   <div class="card"><div class="mute">האימון הבא שלך</div>
-    <div class="big">אימון ${S.next} · ${w.name}</div>
-    <div class="mute" style="margin:6px 0 14px">${last?`אימון אחרון: ${last.key} · ${fmtDate(last.finished)}`:"עוד לא רשמת אימון"}</div>
-    <button class="primary" onclick="${S.draft?"go('workout')":`startWorkout('${S.next}')`}">${S.draft?"המשך אימון "+S.draft.key:"התחל אימון "+S.next}</button>
+    <div class="big">אימון ${lab} · ${esc(day.name)}</div>
+    <div class="mute" style="margin:6px 0 14px">${last?`אימון אחרון: ${esc(last.key)} · ${fmtDate(last.finished)}`:"עוד לא רשמת אימון"}${day.ex.length?"":" · אין תרגילים באימון הזה (הוסף בלשונית תוכנית)"}</div>
+    <button class="primary" onclick="${S.draft?"go('workout')":`startWorkout('${day.id}')`}">${S.draft?"המשך אימון "+esc(S.draft.key):"התחל אימון "+lab}</button>
     <div class="mute" style="margin-top:12px;text-align:center">האימון הבא יתקדם רק אחרי שתסמן "סיימתי אימון".</div></div>
-  <div class="card"><h2>לשנות את האימון הבא?</h2><div class="row">${ORDER.map(k=>
-    `<button class="grow ${S.next===k?"primary":""}" style="${S.next===k?"width:auto;font-size:16px;padding:12px":""}" onclick="setNext('${k}')">${k}<br><span style="font-size:12px">${WORKOUTS[k].short}</span></button>`).join("")}</div></div>
-  <div class="card"><h2>מחזור האימונים</h2><div class="row">${ORDER.map(k=>`<span class="pill" style="${S.next===k?"background:var(--accent);color:var(--accent-ink)":""}">${k} · ${WORKOUTS[k].short}</span>`).join("")}</div></div>`;
+  <div class="card"><h2>לשנות את האימון הבא?</h2><div class="row" style="flex-wrap:wrap">${S.program.map((d,i)=>
+    `<button class="grow ${S.next===d.id?"primary":""}" style="${S.next===d.id?"width:auto;font-size:16px;padding:12px":""}" onclick="setNext('${d.id}')">${labelOf(i)}<br><span style="font-size:12px">${esc(d.name)}</span></button>`).join("")}</div></div>`;
 }
-function setNext(k){ if(S.draft && S.draft.key!==k && !confirm("יש אימון פתוח. להמשיך בלי לשנות אותו?")) return; S.next=k; save(); render(); }
+function setNext(id){ if(S.draft && (S.draft.dayId||S.draft.key)!==id && !confirm("יש אימון פתוח. להמשיך בלי לשנות אותו?")) return; S.next=id; save(); render(); }
 
 function vWorkout(){
-  const d = S.draft, w = WORKOUTS[d.key];
-  return `<h1>אימון ${d.key} · ${w.name}</h1>` + d.exercises.map((e,i)=>`
+  const d = S.draft;
+  return `<h1>אימון ${esc(d.key)} · ${esc(d.name||"")}</h1>` + d.exercises.map((e,i)=>`
   <div class="card"><div class="row between"><div><b>${esc(e.name)}</b><div class="mute">${esc(e.muscle)}${e.equip?" · "+esc(e.equip):""} · יעד: ${e.sets.length}×${esc(e.target)}</div></div>
     <div class="row"><a class="vid" href="${videoUrl(e.name)}" target="_blank" rel="noopener">▶ סרטון</a><button class="small" onclick="swapEx(${i})">החלף</button></div></div>
     <div class="hint" style="text-align:start;margin-top:6px">${lastText(lastOf(e.name))}</div>
@@ -193,7 +227,7 @@ function vWorkout(){
       ${e.sets.length>1?`<button class="small" onclick="delSet(${i})">- סט</button>`:""}<span class="grow"></span>
       <button class="small danger" onclick="delEx(${i})">הסר</button></div></div>`).join("") +
   `<button class="card" style="width:100%" onclick="addEx()">+ הוסף תרגיל</button>
-   <button class="primary" onclick="finish()">✅ סיימתי אימון ${d.key}</button>
+   <button class="primary" onclick="finish()">✅ סיימתי אימון ${esc(d.key)}</button>
    <button class="danger" style="width:100%;margin-top:10px" onclick="cancelWorkout()">בטל אימון (בלי לקדם)</button>`;
 }
 function upd(i,j,f,v){ S.draft.exercises[i].sets[j][f]=v; save(); }
@@ -201,38 +235,72 @@ function tick(i,j){ const s=S.draft.exercises[i].sets[j]; s.done=!s.done; save()
 function addSet(i){ const e=S.draft.exercises[i]; const l=e.sets[e.sets.length-1]; e.sets.push({weight:l?.weight??"",reps:"",done:false}); save(); render(); }
 function delSet(i){ S.draft.exercises[i].sets.pop(); save(); render(); }
 function delEx(i){ if(confirm("להסיר את התרגיל?")){ S.draft.exercises.splice(i,1); save(); render(); } }
-function pickFrom(title, onPick, excludeNames){
-  const k = S.draft.key, opts = WORKOUTS[k].ex.filter(r=>!excludeNames.includes(r[0]));
-  window._pick = onPick;
-  $("modal").innerHTML = `<div class="sheet" onclick="if(event.target===this)closeModal()"><div><h2>${title}</h2>
-   ${opts.map((r,n)=>`<button class="opt" onclick="_pick(${WORKOUTS[k].ex.indexOf(r)});closeModal()"><b>${esc(r[0])}</b><div class="mute">${esc(r[1])} · ${esc(r[4])} · ${r[2]}×${r[3]} · ${lastText(lastOf(r[0]))}</div></button>`).join("")}
-   <button class="opt" onclick="customEx()">✏️ תרגיל משלי…</button>
-   <button class="opt" onclick="closeModal()">סגור</button></div></div>`;
+
+/* בוחר תרגילים (חיפוש בספרייה + תרגיל משלי) */
+let _pick = null, _list = [];
+function pickExercise(title, onPick, exclude){
+  _pick = onPick; window._ex = exclude||[];
+  $("modal").innerHTML = `<div class="sheet" onclick="if(event.target===this)closeModal()"><div><h2>${esc(title)}</h2>
+   <input class="f" id="q" placeholder="חיפוש (למשל: חזה, כבלים, סקוואט)" oninput="pickFilter()">
+   <div id="plist" style="margin-top:10px"></div>
+   <button class="opt" onclick="customEx()">✏️ תרגיל משלי…</button><button class="opt" onclick="closeModal()">סגור</button></div></div>`;
+  pickFilter();
+}
+function pickFilter(){
+  const q=($("q")?.value||"").trim().toLowerCase();
+  _list = CAT.filter(r=>!window._ex.includes(r[0]) && (!q || (r[0]+" "+r[1]+" "+r[4]).toLowerCase().includes(q)));
+  $("plist").innerHTML = _list.map((r,n)=>`<button class="opt" onclick="pickIdx(${n})"><b>${esc(r[0])}</b><div class="mute">${esc(r[1])} · ${esc(r[4])} · ${r[2]}×${esc(r[3])}</div></button>`).join("") || `<div class="mute">לא נמצא. אפשר להוסיף "תרגיל משלי".</div>`;
+}
+function pickIdx(n){ const cb=_pick; closeModal(); cb(toEx(_list[n])); }
+function customEx(){
+  const name = (prompt("שם התרגיל:")||"").trim(); if(!name) return;
+  const cb=_pick; closeModal(); cb({ name, muscle:"מותאם אישית", sets:3, reps:"8-12", equip:"" });
 }
 function closeModal(){ $("modal").innerHTML=""; }
-let _target = null;
-function addEx(){ _target=null; pickFrom("הוסף תרגיל", n=>{ S.draft.exercises.push(makeExercise(S.draft.key,WORKOUTS[S.draft.key].ex[n])); save(); render(); }, S.draft.exercises.map(e=>e.name)); }
-function swapEx(i){ _target=i; window._swapFn = n=>{ S.draft.exercises[i]=makeExercise(S.draft.key,WORKOUTS[S.draft.key].ex[n]); save(); render(); };
-  pickFrom("החלף תרגיל", window._swapFn, S.draft.exercises.map(e=>e.name)); }
-function customEx(){
-  const name = prompt("שם התרגיל:"); if(!name) return; closeModal();
-  const ex = { name:name.trim(), muscle:"מותאם אישית", target:"-", sets:newSets(3,lastOf(name.trim())) };
-  if (_target===null) S.draft.exercises.push(ex); else S.draft.exercises[_target]=ex;
-  save(); render();
-}
+function addEx(){ pickExercise("הוסף תרגיל", ex=>{ S.draft.exercises.push(makeExercise(ex)); save(); render(); }, S.draft.exercises.map(e=>e.name)); }
+function swapEx(i){ pickExercise("החלף תרגיל", ex=>{ S.draft.exercises[i]=makeExercise(ex); save(); render(); }, S.draft.exercises.map(e=>e.name)); }
+
 function finish(){
   const d=S.draft;
   const ex = d.exercises.map(e=>({...e,sets:e.sets.filter(s=>s.done)})).filter(e=>e.sets.length);
   if(!ex.length){ alert("לא סימנת אף סט כבוצע (✓). סמן סטים שעשית כדי לשמור."); return; }
-  if(!confirm(`לשמור את אימון ${d.key} ולעבור לאימון ${nextOf(d.key)}?`)) return;
-  S.history.unshift({ id:Date.now(), key:d.key, started:d.started, finished:Date.now(), exercises:ex });
-  S.next = nextOf(d.key); S.draft=null; timer=null; save(); view="home"; render(); window.scrollTo(0,0);
+  const nid = nextOf(d.dayId||d.key), nd = dayById(nid);
+  if(!confirm(`לשמור את אימון ${d.key} ולעבור לאימון ${labelOf(dayIdx(nid))} (${nd.name})?`)) return;
+  S.history.unshift({ id:Date.now(), key:d.key, name:d.name, started:d.started, finished:Date.now(), exercises:ex });
+  S.next = nid; S.draft=null; timer=null; save(); view="home"; render(); window.scrollTo(0,0);
 }
 function cancelWorkout(){ if(confirm("לבטל את האימון הנוכחי? האימון הבא לא יתקדם.")){ S.draft=null; timer=null; save(); view="home"; render(); } }
 
+/* ---------- עורך תוכנית ---------- */
+function vProgram(){
+  return `<h1>התוכנית שלי</h1><div class="mute" style="margin-bottom:12px">כאן אתה קובע את האימונים, התרגילים, הסטים והחזרות. האימונים מתחלפים לפי הסדר שכאן.</div>` +
+  S.program.map((d,di)=>`<div class="card">
+    <div class="row"><span class="pill">${labelOf(di)}</span><input class="f grow" value="${esc(d.name)}" onchange="renameDay(${di},this.value)">
+      <button class="small" onclick="moveDay(${di},-1)">↑</button><button class="small" onclick="moveDay(${di},1)">↓</button></div>
+    ${d.ex.map((e,ei)=>`<div style="border-top:1px solid var(--line);margin-top:10px;padding-top:10px">
+      <div class="row between"><div><b>${esc(e.name)}</b><div class="mute">${esc(e.muscle||"")}${e.equip?" · "+esc(e.equip):""}</div></div>
+        <div class="row"><button class="small" onclick="moveEx(${di},${ei},-1)">↑</button><button class="small" onclick="moveEx(${di},${ei},1)">↓</button><button class="small danger" onclick="delProgEx(${di},${ei})">✕</button></div></div>
+      <div class="row" style="margin-top:6px"><span class="mute">סטים</span><input class="f sm" inputmode="numeric" value="${esc(e.sets)}" onchange="setProgEx(${di},${ei},'sets',this.value)">
+        <span class="mute">חזרות</span><input class="f sm" value="${esc(e.reps)}" onchange="setProgEx(${di},${ei},'reps',this.value)"></div></div>`).join("")}
+    <div class="row" style="margin-top:12px"><button class="grow" onclick="addProgEx(${di})">+ הוסף תרגיל</button><button class="danger" onclick="delDay(${di})">מחק אימון</button></div></div>`).join("") +
+  `<button class="primary" onclick="addDay()">+ הוסף יום אימון</button>`;
+}
+function renameDay(di,v){ S.program[di].name=v.trim()||S.program[di].name; save(); render(); }
+function moveDay(di,dir){ const j=di+dir; if(j<0||j>=S.program.length) return; [S.program[di],S.program[j]]=[S.program[j],S.program[di]]; save(); render(); }
+function addDay(){ S.program.push({ id:"d"+Date.now(), name:"אימון "+(S.program.length+1), ex:[] }); save(); render(); }
+function delDay(di){
+  if(S.program.length<2) return alert("חייב להישאר לפחות אימון אחד.");
+  if(!confirm(`למחוק את "${S.program[di].name}"? ההיסטוריה נשמרת.`)) return;
+  const [rm]=S.program.splice(di,1); if(S.next===rm.id) S.next=S.program[Math.min(di,S.program.length-1)].id; save(); render();
+}
+function addProgEx(di){ pickExercise("הוסף תרגיל לאימון", ex=>{ S.program[di].ex.push(ex); save(); render(); }, S.program[di].ex.map(e=>e.name)); }
+function delProgEx(di,ei){ S.program[di].ex.splice(ei,1); save(); render(); }
+function moveEx(di,ei,dir){ const a=S.program[di].ex, j=ei+dir; if(j<0||j>=a.length) return; [a[ei],a[j]]=[a[j],a[ei]]; save(); render(); }
+function setProgEx(di,ei,f,v){ const e=S.program[di].ex[ei]; if(f==="sets"){ const n=parseInt(v,10); if(n>0&&n<=20) e.sets=n; } else e.reps=v.trim()||e.reps; save(); render(); }
+
 function vHistory(){
   if(!S.history.length) return `<h1>היסטוריה</h1><div class="card mute">עוד אין אימונים. סיים אימון ראשון והוא יופיע כאן.</div>`;
-  return `<h1>היסטוריה</h1>` + S.history.map(h=>`<div class="card"><div class="row between"><div><b>אימון ${h.key} · ${WORKOUTS[h.key].name}</b>
+  return `<h1>היסטוריה</h1>` + S.history.map(h=>`<div class="card"><div class="row between"><div><b>אימון ${esc(h.key)} · ${esc(h.name||dayById(h.key)?.name||"")}</b>
     <div class="mute">${fmtDate(h.finished)}</div></div><button class="small danger" onclick="delHist(${h.id})">מחק</button></div>
     ${h.exercises.map(e=>`<div style="margin-top:10px"><b>${esc(e.name)}</b><div class="mute">${e.sets.map(s=>`${s.weight||"-"}×${s.reps||"-"}`).join(" · ")}</div></div>`).join("")}</div>`).join("");
 }
@@ -246,23 +314,28 @@ function vSettings(){
    <label>התראות בדפדפן (${perm==="granted"?"פעיל":perm==="denied"?"חסום":perm==="unsupported"?"לא נתמך":"כבוי"})</label>
    <button onclick="askNotif()">הפעל התראות</button>
    <div class="mute" style="margin-top:8px">התזכורת מופיעה במסך הבית, ובהתראה כשפותחים את האפליקציה אחרי הפסקה.</div></div>
+  <div class="card"><h2>התוכנית</h2><div class="row"><button class="grow" onclick="go('program')">ערוך תוכנית</button><button class="grow" onclick="resetProgram()">בחר תבנית מחדש</button></div></div>
+  <div class="card"><h2>שיתוף</h2><div class="mute" style="margin-bottom:8px">שלח את האפליקציה לחבר. כל אחד בונה תוכנית משלו, והנתונים נשמרים רק אצלו.</div><button onclick="shareApp()">שתף את NotFat</button></div>
   <div class="card"><h2>גיבוי נתונים</h2><div class="mute" style="margin-bottom:8px">הנתונים נשמרים רק בטלפון. מומלץ לגבות מדי פעם.</div>
    <div class="row"><button class="grow" onclick="exportData()">ייצוא</button><button class="grow" onclick="$('imp').click()">ייבוא</button></div>
    <input id="imp" type="file" accept="application/json" hidden onchange="importData(this)"></div>`;
 }
+function resetProgram(){ if(confirm("להציג שוב את בחירת התוכנית? התוכנית הנוכחית תוחלף. ההיסטוריה נשמרת.")){ S.program=null; S.next=null; S.draft=null; timer=null; save(); view="home"; render(); } }
+function shareApp(){ const u=location.href.split("#")[0]; if(navigator.share) navigator.share({title:"NotFat",text:"NotFat - מעקב אימונים",url:u}).catch(()=>{}); else { try{ navigator.clipboard.writeText(u); alert("הקישור הועתק:\n"+u); }catch{ prompt("העתק את הקישור:",u); } } }
 function setS(k,v){ const n=parseInt(v,10); if(n>0){ S.settings[k]=n; save(); } }
 function askNotif(){ if(!("Notification" in window)) return alert("הדפדפן לא תומך בהתראות"); Notification.requestPermission().then(render); }
 function exportData(){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));
-  a.download="gym-backup-"+new Date().toISOString().slice(0,10)+".json"; a.click(); }
+  a.download="notfat-backup-"+new Date().toISOString().slice(0,10)+".json"; a.click(); }
 function importData(inp){ const f=inp.files[0]; if(!f) return; f.text().then(t=>{ try{ const d=JSON.parse(t);
-  if(!Array.isArray(d.history)) throw 0; if(!confirm("לדרוס את הנתונים הנוכחיים?")) return; S=Object.assign(blank(),d); save(); render(); alert("יובא בהצלחה"); }catch{ alert("קובץ לא תקין"); } }); }
+  if(!Array.isArray(d.history)) throw 0; if(!confirm("לדרוס את הנתונים הנוכחיים?")) return; localStorage.setItem(KEY,JSON.stringify(d)); S=load(); save(); render(); alert("יובא בהצלחה"); }catch{ alert("קובץ לא תקין"); } }); }
 
 /* ---------- תזכורת בפתיחה ---------- */
 function maybeNotify(){
-  const last=S.history[0]; if(!last||!("Notification" in window)||Notification.permission!=="granted") return;
+  const last=S.history[0]; if(!last||!S.program||!("Notification" in window)||Notification.permission!=="granted") return;
   if(daysSince(last.finished)>=S.settings.remindDays && daysSince(S.lastNotif||0)>=1){
     S.lastNotif=Date.now(); save();
-    new Notification("הגיע הזמן להתאמן 💪",{body:`האימון הבא: ${S.next} · ${WORKOUTS[S.next].name}`,icon:"icon-192.png"});
+    const d=dayById(S.next);
+    new Notification("הגיע הזמן להתאמן 💪",{body:d?`האימון הבא: ${d.name}`:"",icon:"icon-192.png"});
   }
 }
 
